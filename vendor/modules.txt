@@ -1,0 +1,11 @@
+# github.com/go-resty/resty/v2 v2.4.0
+## explicit
+github.com/go-resty/resty/v2
+# github.com/gobuffalo/flect v0.2.2
+## explicit
+github.com/gobuffalo/flect
+# golang.org/x/net v0.0.0-20201224014010-6772e930b67b
+golang.org/x/net/publicsuffix
+# gomodules.xyz/sets v0.0.0-20200930152147-4f4543544799
+## explicit
+gomodules.xyz/sets
