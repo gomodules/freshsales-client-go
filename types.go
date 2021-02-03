@@ -214,6 +214,7 @@ type Note struct {
 }
 
 type APIObject struct {
-	Lead *Lead `json:"lead,omitempty"`
-	Note *Note `json:"note,omitempty"`
+	Lead    *Lead    `json:"lead,omitempty"`
+	Contact *Contact `json:"contact,omitempty"`
+	Note    *Note    `json:"note,omitempty"`
 }

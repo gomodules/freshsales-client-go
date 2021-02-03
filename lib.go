@@ -2,10 +2,11 @@ package freshsalesclient
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/gobuffalo/flect"
 	"gomodules.xyz/sets"
-	"strings"
 )
 
 type Client struct {
@@ -30,40 +31,6 @@ const (
 	EntitySalesAccount EntityType = "SalesAccount"
 	EntityDeal         EntityType = "Deal"
 )
-
-func (c *Client) AddNote(id int, et EntityType, desc string) (*Note, error) {
-	resp, err := c.client.R().
-		SetBody(APIObject{Note: &Note{
-			Description:    desc,
-			TargetableType: string(et),
-			TargetableID:   id,
-		}}).
-		SetResult(&APIObject{}).
-		Post("/api/notes")
-	if err != nil {
-		return nil, err
-	}
-	return resp.Result().(*APIObject).Note, nil
-}
-
-func (c *Client) Search(str string, et EntityType, more ...EntityType) ([]Entity, error) {
-	entities := sets.NewString()
-	for _, e := range append(more, et) {
-		entities.Insert(strings.ToLower(flect.Underscore(string(e))))
-	}
-
-	resp, err := c.client.R().
-		SetQueryParams(map[string]string{
-			"q":       str,
-			"include": strings.Join(entities.List(), ","),
-		}).
-		SetResult(SearchResults{}).
-		Get("/api/search")
-	if err != nil {
-		return nil, err
-	}
-	return *(resp.Result().(*SearchResults)), nil
-}
 
 func (c *Client) CreateLead(lead *Lead) (*Lead, error) {
 	resp, err := c.client.R().
@@ -103,6 +70,51 @@ func (c *Client) UpdateLead(lead *Lead) (*Lead, error) {
 		panic(err)
 	}
 	return resp.Result().(*APIObject).Lead, nil
+}
+
+func (c *Client) UpdateContact(contact *Contact) (*Contact, error) {
+	resp, err := c.client.R().
+		SetBody(APIObject{Contact: contact}).
+		SetResult(&APIObject{}).
+		Put(fmt.Sprintf("/api/contacts/%d", contact.ID))
+	if err != nil {
+		panic(err)
+	}
+	return resp.Result().(*APIObject).Contact, nil
+}
+
+func (c *Client) AddNote(id int, et EntityType, desc string) (*Note, error) {
+	resp, err := c.client.R().
+		SetBody(APIObject{Note: &Note{
+			Description:    desc,
+			TargetableType: string(et),
+			TargetableID:   id,
+		}}).
+		SetResult(&APIObject{}).
+		Post("/api/notes")
+	if err != nil {
+		return nil, err
+	}
+	return resp.Result().(*APIObject).Note, nil
+}
+
+func (c *Client) Search(str string, et EntityType, more ...EntityType) ([]Entity, error) {
+	entities := sets.NewString()
+	for _, e := range append(more, et) {
+		entities.Insert(strings.ToLower(flect.Underscore(string(e))))
+	}
+
+	resp, err := c.client.R().
+		SetQueryParams(map[string]string{
+			"q":       str,
+			"include": strings.Join(entities.List(), ","),
+		}).
+		SetResult(SearchResults{}).
+		Get("/api/search")
+	if err != nil {
+		return nil, err
+	}
+	return *(resp.Result().(*SearchResults)), nil
 }
 
 func (c *Client) LookupByEmail(email string, et EntityType, more ...EntityType) (*LookupResult, error) {
