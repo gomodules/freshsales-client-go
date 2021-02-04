@@ -206,9 +206,9 @@ type LookupResult struct {
 type Note struct {
 	Description    string `json:"description,omitempty"`
 	TargetableType string `json:"targetable_type,omitempty"`
-	TargetableID   int    `json:"targetable_id,omitempty"`
+	TargetableID   int64  `json:"targetable_id,omitempty"`
 
-	ID        int        `json:"id,omitempty"`
+	ID        int64      `json:"id,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }

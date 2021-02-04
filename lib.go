@@ -83,7 +83,7 @@ func (c *Client) UpdateContact(contact *Contact) (*Contact, error) {
 	return resp.Result().(*APIObject).Contact, nil
 }
 
-func (c *Client) AddNote(id int, et EntityType, desc string) (*Note, error) {
+func (c *Client) AddNote(id int64, et EntityType, desc string) (*Note, error) {
 	resp, err := c.client.R().
 		SetBody(APIObject{Note: &Note{
 			Description:    desc,
