@@ -225,7 +225,7 @@ type BaseNoteDescription struct {
 }
 
 type ClientInfo struct {
-	OS       string      `json:"s,omitempty"`
+	OS       string      `json:"os,omitempty"`
 	Device   string      `json:"device,omitempty"`
 	Location GeoLocation `json:"location,omitempty"`
 }
