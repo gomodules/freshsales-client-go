@@ -126,8 +126,8 @@ type Lead struct {
 	RecentNote                     string        `json:"recent_note,omitempty"`
 	LastContactedViaChat           *time.Time    `json:"last_contacted_via_chat,omitempty"`
 	LastContactedViaSalesActivity  string        `json:"last_contacted_via_sales_activity,omitempty"`
-	CompletedSalesSequences        int           `json:"completed_sales_sequences,omitempty"`
-	ActiveSalesSequences           int           `json:"active_sales_sequences,omitempty"`
+	CompletedSalesSequences        string        `json:"completed_sales_sequences,omitempty"`
+	ActiveSalesSequences           string        `json:"active_sales_sequences,omitempty"`
 	WebFormIds                     string        `json:"web_form_ids,omitempty"`
 	LastAssignedAt                 *time.Time    `json:"last_assigned_at,omitempty"`
 	Tags                           []string      `json:"tags,omitempty"`
@@ -179,8 +179,8 @@ type Contact struct {
 	LastContactedViaChat           *time.Time   `json:"last_contacted_via_chat,omitempty"`
 	WonDealsCount                  int          `json:"won_deals_count,omitempty"`
 	LastContactedViaSalesActivity  string       `json:"last_contacted_via_sales_activity,omitempty"`
-	CompletedSalesSequences        int          `json:"completed_sales_sequences,omitempty"`
-	ActiveSalesSequences           int          `json:"active_sales_sequences,omitempty"`
+	CompletedSalesSequences        string       `json:"completed_sales_sequences,omitempty"`
+	ActiveSalesSequences           string       `json:"active_sales_sequences,omitempty"`
 	WebFormIds                     string       `json:"web_form_ids,omitempty"`
 	OpenDealsCount                 int          `json:"open_deals_count,omitempty"`
 	LastAssignedAt                 *time.Time   `json:"last_assigned_at,omitempty"`
