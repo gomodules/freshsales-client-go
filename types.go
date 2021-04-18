@@ -81,10 +81,10 @@ type EmailInfo struct {
 	Destroy   bool        `json:"_destroy,omitempty"`
 }
 type CustomFields struct {
-	Interest              interface{} `json:"cf_interest,omitempty"`
-	Github                interface{} `json:"cf_github,omitempty"`
-	KubernetesSetup       string      `json:"cf_kubernetes_setup,omitempty"`
-	CalendlyMeetingAgenda interface{} `json:"cf_calendly_meeting_agenda,omitempty"`
+	Interest              string `json:"cf_interest,omitempty"`
+	Github                string `json:"cf_github,omitempty"`
+	KubernetesSetup       string `json:"cf_kubernetes_setup,omitempty"`
+	CalendlyMeetingAgenda string `json:"cf_calendly_meeting_agenda,omitempty"`
 }
 
 type Lead struct {
