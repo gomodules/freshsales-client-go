@@ -237,3 +237,27 @@ type GeoLocation struct {
 	Country     string `json:"country,omitempty"`
 	Coordinates string `json:"coordinates,omitempty"`
 }
+
+type LeadView struct {
+	ID             int    `json:"id"`
+	Name           string `json:"name"`
+	ModelClassName string `json:"model_class_name"`
+	UserID         int    `json:"user_id"`
+	IsDefault      bool   `json:"is_default"`
+	IsPublic       bool   `json:"is_public"`
+	UpdatedAt      string `json:"updated_at"`
+}
+
+type LeadFilters struct {
+	Filters []LeadView `json:"filters"`
+}
+
+type ListMeta struct {
+	TotalPages int `json:"total_pages"`
+	Total      int `json:"total"`
+}
+
+type ListResponse struct {
+	Leads []Lead   `json:"leads"`
+	Meta  ListMeta `json:"meta"`
+}
