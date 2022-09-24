@@ -54,5 +54,5 @@ func export(c *freshsalesclient.Client, filename string) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(filename, data, 0644)
+	return os.WriteFile(filename, data, 0644)
 }
