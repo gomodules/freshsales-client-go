@@ -76,7 +76,7 @@ var criteria = []Criterion{
 }
 
 func classify(filename string) error {
-	data, err := ioutil.ReadFile(filename)
+	data, err := os.ReadFile(filename)
 	if err != nil {
 		return err
 	}
@@ -123,7 +123,7 @@ func classify(filename string) error {
 			return err
 		}
 		f := filepath.Join(dir, fmt.Sprintf("%s_%s.json", prod, base))
-		err = ioutil.WriteFile(f, data, 0644)
+		err = os.WriteFile(f, data, 0644)
 		if err != nil {
 			return err
 		}
