@@ -90,11 +90,11 @@ type CustomFields struct {
 
 type Contact struct {
 	ID                             int64        `json:"id"`
-	FirstName                      *string      `json:"first_name"`
+	FirstName                      string       `json:"first_name"`
 	LastName                       string       `json:"last_name"`
 	DisplayName                    string       `json:"display_name"`
 	Avatar                         string       `json:"avatar"`
-	JobTitle                       *string      `json:"job_title"`
+	JobTitle                       string       `json:"job_title"`
 	City                           string       `json:"city"`
 	State                          string       `json:"state"`
 	Zipcode                        string       `json:"zipcode"`
@@ -102,7 +102,7 @@ type Contact struct {
 	Email                          string       `json:"email"`
 	Emails                         []EmailInfo  `json:"emails"`
 	TimeZone                       string       `json:"time_zone"`
-	WorkNumber                     *string      `json:"work_number"`
+	WorkNumber                     string       `json:"work_number"`
 	MobileNumber                   string       `json:"mobile_number"`
 	Address                        string       `json:"address"`
 	LastSeen                       string       `json:"last_seen"`
@@ -128,7 +128,7 @@ type Contact struct {
 	LastAssignedAt                 *time.Time   `json:"last_assigned_at"`
 	Facebook                       string       `json:"facebook"`
 	Twitter                        string       `json:"twitter"`
-	Linkedin                       *string      `json:"linkedin"`
+	Linkedin                       string       `json:"linkedin"`
 	IsDeleted                      bool         `json:"is_deleted"`
 	TeamUserIds                    string       `json:"team_user_ids"`
 	ExternalId                     string       `json:"external_id"`

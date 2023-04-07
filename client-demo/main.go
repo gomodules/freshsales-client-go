@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	freshsalesclient "gomodules.xyz/freshsales-client-go"
 )
 
