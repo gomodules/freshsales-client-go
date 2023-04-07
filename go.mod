@@ -1,11 +1,11 @@
 module gomodules.xyz/freshsales-client-go
 
-go 1.16
+go 1.20
 
 require (
-	github.com/go-resty/resty/v2 v2.6.0
-	github.com/gobuffalo/flect v0.2.2
-	github.com/stretchr/testify v1.8.0 // indirect
-	golang.org/x/net v0.7.0 // indirect
+	github.com/go-resty/resty/v2 v2.7.0
+	github.com/gobuffalo/flect v1.0.2
 	gomodules.xyz/sets v0.2.1
 )
+
+require golang.org/x/net v0.8.0 // indirect
