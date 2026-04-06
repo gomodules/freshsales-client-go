@@ -79,7 +79,40 @@ func (c *Client) UpdateContact(contact *Contact) (*Contact, error) {
 		SetResult(&APIObject{}).
 		Put(fmt.Sprintf("/api/contacts/%d", contact.ID))
 	if err != nil {
-		panic(err)
+		return nil, err
+	}
+	if resp.StatusCode() < http.StatusOK || resp.StatusCode() >= http.StatusMultipleChoices {
+		return nil, fmt.Errorf("request failed with status code = %d", resp.StatusCode())
+	}
+	return resp.Result().(*APIObject).Contact, nil
+}
+
+func (c *Client) DeleteContact(id int) error {
+	resp, err := c.client.R().
+		Delete(fmt.Sprintf("/api/contacts/%d", id))
+	if err != nil {
+		return err
+	}
+	if resp.StatusCode() < http.StatusOK || resp.StatusCode() >= http.StatusMultipleChoices {
+		return fmt.Errorf("request failed with status code = %d", resp.StatusCode())
+	}
+	return nil
+}
+
+func (c *Client) UpsertContact(uniqueIdentifier map[string]string, contact *Contact) (*Contact, error) {
+	type UpsertRequest struct {
+		UniqueIdentifier map[string]string `json:"unique_identifier"`
+		Contact          *Contact          `json:"contact"`
+	}
+	resp, err := c.client.R().
+		SetBody(UpsertRequest{
+			UniqueIdentifier: uniqueIdentifier,
+			Contact:          contact,
+		}).
+		SetResult(&APIObject{}).
+		Post("/api/contacts/upsert")
+	if err != nil {
+		return nil, err
 	}
 	if resp.StatusCode() < http.StatusOK || resp.StatusCode() >= http.StatusMultipleChoices {
 		return nil, fmt.Errorf("request failed with status code = %d", resp.StatusCode())
