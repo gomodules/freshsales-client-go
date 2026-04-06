@@ -39,12 +39,12 @@ func main() {
 type Product string
 
 const (
-	ProductKubeDB  Product = "kubedb"
-	ProductStash   Product = "stash"
-	ProductKubeVault   Product = "kubevault"
-	ProductKubeform   Product = "kubeform"
-	ProductVoyager Product = "voyager"
-	ProductUnknown Product = "unknown"
+	ProductKubeDB    Product = "kubedb"
+	ProductStash     Product = "stash"
+	ProductKubeVault Product = "kubevault"
+	ProductKubeform  Product = "kubeform"
+	ProductVoyager   Product = "voyager"
+	ProductUnknown   Product = "unknown"
 )
 
 type Criterion struct {
