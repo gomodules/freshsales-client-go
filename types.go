@@ -49,16 +49,57 @@ type Currency struct {
 }
 
 type Deal struct {
-	ID                 int64       `json:"id,omitempty"`
-	Name               string      `json:"name,omitempty"`
-	Amount             float64     `json:"amount,omitempty"`
-	CurrencyID         int64       `json:"currency_id,omitempty"`
-	BaseCurrencyAmount float64     `json:"base_currency_amount,omitempty"`
-	ExpectedClose      *time.Time  `json:"expected_close,omitempty"`
-	DealProductID      int64       `json:"deal_product_id,omitempty"`
-	DealProduct        interface{} `json:"deal_product,omitempty"`
-	Currency           Currency    `json:"currency,omitempty"`
-	ProductID          int         `json:"product_id,omitempty"`
+	ID                  int64       `json:"id,omitempty"`
+	Name                string      `json:"name,omitempty"`
+	Amount              float64     `json:"amount,omitempty"`
+	CurrencyID          int64       `json:"currency_id,omitempty"`
+	BaseCurrencyAmount  float64     `json:"base_currency_amount,omitempty"`
+	SalesAccountID      int64       `json:"sales_account_id,omitempty"`
+	DealStageID         int64       `json:"deal_stage_id,omitempty"`
+	DealReasonID        int64       `json:"deal_reason_id,omitempty"`
+	DealTypeID          int64       `json:"deal_type_id,omitempty"`
+	OwnerID             int64       `json:"owner_id,omitempty"`
+	ExpectedClose       *time.Time  `json:"expected_close,omitempty"`
+	ClosedDate          *time.Time  `json:"closed_date,omitempty"`
+	LeadSourceID        int64       `json:"lead_source_id,omitempty"`
+	CampaignID          int64       `json:"campaign_id,omitempty"`
+	DealProductID       int64       `json:"deal_product_id,omitempty"`
+	DealPaymentStatusID int64       `json:"deal_payment_status_id,omitempty"`
+	Probability         int         `json:"probability,omitempty"`
+	TerritoryID         int64       `json:"territory_id,omitempty"`
+	DealPipelineID      int64       `json:"deal_pipeline_id,omitempty"`
+	DealProduct         interface{} `json:"deal_product,omitempty"`
+	Currency            Currency    `json:"currency,omitempty"`
+	ProductID           int         `json:"product_id,omitempty"`
+	StageUpdatedTime    time.Time   `json:"stage_updated_time,omitempty"`
+	CustomField         interface{} `json:"custom_field,omitempty"`
+	Age                 int         `json:"age,omitempty"`
+	CreaterID           int64       `json:"creater_id,omitempty"`
+	CreatedAt           time.Time   `json:"created_at,omitempty"`
+	UpdatedAt           time.Time   `json:"updated_at,omitempty"`
+}
+
+type DealFilters struct {
+	Filters []DealView `json:"filters"`
+}
+
+type DealView struct {
+	ID             int    `json:"id"`
+	Name           string `json:"name"`
+	ModelClassName string `json:"model_class_name"`
+	UserID         int    `json:"user_id"`
+	IsDefault      bool   `json:"is_default"`
+	IsPublic       bool   `json:"is_public"`
+	UpdatedAt      string `json:"updated_at"`
+}
+
+type DealListResponse struct {
+	Deals []Deal   `json:"deals"`
+	Meta  ListMeta `json:"meta"`
+}
+
+type DealObject struct {
+	Deal *Deal `json:"deal,omitempty"`
 }
 
 type Links struct {
@@ -163,6 +204,53 @@ type LookupResult struct {
 	Contacts struct {
 		Contacts []Contact `json:"contacts,omitempty"`
 	} `json:"contacts,omitempty"`
+}
+
+type SalesAccount struct {
+	ID                   int64     `json:"id,omitempty"`
+	Name                 string    `json:"name,omitempty"`
+	Address              string    `json:"address,omitempty"`
+	City                 string    `json:"city,omitempty"`
+	State                string    `json:"state,omitempty"`
+	Zipcode              string    `json:"zipcode,omitempty"`
+	Country              string    `json:"country,omitempty"`
+	NumberOfEmployees    int       `json:"number_of_employees,omitempty"`
+	AnnualRevenue        int       `json:"annual_revenue,omitempty"`
+	Website              string    `json:"website,omitempty"`
+	Phone                string    `json:"phone,omitempty"`
+	IndustryTypeID       int64     `json:"industry_type_id,omitempty"`
+	BusinessTypeID       int64     `json:"business_type_id,omitempty"`
+	OwnerID              int64     `json:"owner_id,omitempty"`
+	Facebook             string    `json:"facebook,omitempty"`
+	Twitter              string    `json:"twitter,omitempty"`
+	Linkedin             string    `json:"linkedin,omitempty"`
+	TerritoryID          int64     `json:"territory_id,omitempty"`
+	ParentSalesAccountID int64     `json:"parent_sales_account_id,omitempty"`
+	CreatedAt            time.Time `json:"created_at,omitempty"`
+	UpdatedAt            time.Time `json:"updated_at,omitempty"`
+}
+
+type AccountFilters struct {
+	Filters []AccountView `json:"filters"`
+}
+
+type AccountView struct {
+	ID             int    `json:"id"`
+	Name           string `json:"name"`
+	ModelClassName string `json:"model_class_name"`
+	UserID         int    `json:"user_id"`
+	IsDefault      bool   `json:"is_default"`
+	IsPublic       bool   `json:"is_public"`
+	UpdatedAt      string `json:"updated_at"`
+}
+
+type AccountListResponse struct {
+	SalesAccounts []SalesAccount `json:"sales_accounts"`
+	Meta          ListMeta       `json:"meta"`
+}
+
+type AccountObject struct {
+	SalesAccount *SalesAccount `json:"sales_account,omitempty"`
 }
 
 type Note struct {
